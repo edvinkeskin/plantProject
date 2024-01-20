@@ -75,8 +75,12 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django',
-        'NAME': 'your_mongodb_database',
+        'ENGINE': 'djongo',
+        'NAME': 'mongo-db',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb+srv://edvinkeskin:dbUserPassword@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
+        }
     }
 }
 

@@ -1,1 +1,3 @@
 pymongo==4.6.1
+Django==5.0.1
+djongo==1.3.6
