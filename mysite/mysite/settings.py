@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "backend",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -74,13 +75,13 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'mongo-db',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': 'mongodb+srv://edvinkeskin:dbUserPassword@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "ugly",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        "HOST": "localhost",
+        "PORT": 5432,
     }
 }
 
