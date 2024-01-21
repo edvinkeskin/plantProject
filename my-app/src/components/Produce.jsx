@@ -13,9 +13,9 @@ const Product = ({ produce }) => {
             <Card onClick={handleOpenModal}>
                 <Card.Img variant="top" src={imagePath} alt="Ugly Potato"/>
                 <Card.Body>
-                    <Card.Title>Potato</Card.Title>
-                    <Card.Text className="m-0">Price: $10.00</Card.Text>
-                    <Card.Text>Expires: 01-01-2024</Card.Text>
+                    <Card.Title>{produce.name}</Card.Title>
+                    <Card.Text className="m-0">Price: ${produce.price}</Card.Text>
+                    <Card.Text>Expires: {produce.expiryDate}</Card.Text>
                 </Card.Body>
             </Card>
             <Modal show={showModal} onHide={handleCloseModal} size="xl" centered>
@@ -23,25 +23,21 @@ const Product = ({ produce }) => {
                 <Modal.Body>
                     <Row>
                         <Col md={12} lg={6}>
-                            <Image src={imagePath} alt="Ugly Potato" rounded fluid/>
+                            <Image src={imagePath} alt={produce.name} rounded fluid/>
                         </Col>
                         <Col md={12} lg={6}>
                             <div className="my-2 d-flex flex-column justify-content-center">
                                 <div>
-                                    <h1>Potato</h1>
-                                    <p className="m-0 p-0">Price: $10.00</p>
-                                    <p>Expires: 2024-01-01</p>
-                                    <p className="m-0 p-0">
-                                        Despite its unconventional appearance, the Ugly Potato boasts
-                                        a hearty and earthy taste that adds depth to a variety of
-                                        dishes.
-                                    </p>
+                                    <h1>{produce.name}</h1>
+                                    <p className="m-0 p-0">Price: ${produce.price}</p>
+                                    <p>Expires: {produce.expiryDate}</p>
+                                    <p className="m-0 p-0">{produce.description}</p>
                                 </div>
                                 <hr/>
                                 <div>
                                     <h5>Seller Information</h5>
                                     <p className="m-0 p-0">Richard Lee</p>
-                                    <p className="m-0 p-0">Vancouver, BC Canada</p>
+                                    <p className="m-0 p-0">{produce.city} {produce.province} {produce.country}</p>
                                 </div>
                                 <hr/>
                                 <div>
