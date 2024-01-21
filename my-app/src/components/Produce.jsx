@@ -6,12 +6,10 @@ const Product = ({ produce }) => {
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
 
-    const imagePath = `${process.env.PUBLIC_URL}/UglyPotato.jpeg`;
-
     return (
         <Container>
             <Card onClick={handleOpenModal}>
-                <Card.Img variant="top" src={imagePath} alt="Ugly Potato"/>
+                <Card.Img variant="top" src={`http://localhost:8000/${produce.image}`} alt="Ugly Potato"/>
                 <Card.Body>
                     <Card.Title>{produce.name}</Card.Title>
                     <Card.Text className="m-0">Price: ${produce.price}</Card.Text>
@@ -23,7 +21,7 @@ const Product = ({ produce }) => {
                 <Modal.Body>
                     <Row>
                         <Col md={12} lg={6}>
-                            <Image src={imagePath} alt={produce.name} rounded fluid/>
+                            <Image src={`http://localhost:8000/${produce.image}`} alt={produce.name} rounded fluid/>
                         </Col>
                         <Col md={12} lg={6}>
                             <div className="my-2 d-flex flex-column justify-content-center">
@@ -36,7 +34,7 @@ const Product = ({ produce }) => {
                                 <hr/>
                                 <div>
                                     <h5>Seller Information</h5>
-                                    <p className="m-0 p-0">Richard Lee</p>
+                                    <p className="m-0 p-0">{produce.seller.first_name} {produce.seller.last_name}</p>
                                     <p className="m-0 p-0">{produce.city} {produce.province} {produce.country}</p>
                                 </div>
                                 <hr/>
