@@ -28,7 +28,7 @@ Ugliest produce of the week contest.
 Better infrastructure for handling larger produce information loads.
 Communication between producers and customers.
 
-Demo: 
+## Demo 
 <img width="1440" alt="Screenshot 2024-01-21 at 12 02 56 PM" src="https://github.com/edvinkeskin/plantProject/assets/77553524/66978199-099c-451e-9a2f-43c02146ab7f">
 <img width="1440" alt="Screenshot 2024-01-21 at 12 03 08 PM" src="https://github.com/edvinkeskin/plantProject/assets/77553524/d8cb5471-45d3-410c-b64b-f86e8bf80310">
 
