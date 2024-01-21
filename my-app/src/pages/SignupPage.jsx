@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router';
 
 function Copyright(props) {
   return (
@@ -37,14 +38,10 @@ export default function SignUp() {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
 
+    const nav = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const signup = {
-        firstName,
-        lastName,
-        email, 
-        password
-    }
 
     try {
       const response = await fetch('http://localhost:8000/register', 
@@ -53,13 +50,21 @@ export default function SignUp() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(signup)
+        body: JSON.stringify(
+            {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password
+            }
+        )
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      if (response.ok) {
+        nav('/');
+      }
       const data = await response.json();
       console.log(data);
     } catch (error) {
