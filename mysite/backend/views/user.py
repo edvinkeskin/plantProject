@@ -40,3 +40,11 @@ class LoginView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
     
         return Response({"error": "invalid email/password"}, status=status.HTTP_400_BAD_REQUEST)
+    
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+
+        return Response({"message": "logout successful"}, status=status.HTTP_200_OK)
