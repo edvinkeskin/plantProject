@@ -1,9 +1,8 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row, Button} from "react-bootstrap";
 import Produce from "../components/Produce";
 import Header from "../components/Header";
 import NewHeader from "../components/NewHeader";
 import {useEffect, useState} from "react";
-import {Button} from "@mui/material";
 import * as React from "react";
 import AddProduce from "../components/AddProduce";
 import Cookies from "js-cookie";
@@ -96,7 +95,7 @@ const HomePage = () => {
             <NewHeader/>
             <Row className="d-flex flex-row justify-content-between align-items-center">
                 <Col className="mb-3">
-                    <h1>Produces</h1>
+                    <h1>Produce</h1>
                 </Col>
                 <Col>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

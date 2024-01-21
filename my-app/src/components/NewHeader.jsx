@@ -120,7 +120,7 @@ export default function PersistentDrawerLeft() {
       </FormGroup>
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -128,7 +128,7 @@ export default function PersistentDrawerLeft() {
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
             <Typography variant="h6" noWrap component="div">
               UGLY PRODUCE
@@ -160,8 +160,8 @@ export default function PersistentDrawerLeft() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={() => window.location.href='http://localhost:3000/'}>My account</MenuItem>
+                  <MenuItem onClick={() => window.location.href='http://localhost:3000/login'}>Logout</MenuItem>
                 </Menu>
               </div>
             )}

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Button, Card, Container, Image, Modal, Row, Col} from "react-bootstrap";
 import {Snackbar} from "@mui/material";
 
@@ -9,6 +9,25 @@ const Product = ({ produce }) => {
     const [showContactSellerMsg, setShowContactSellerMsg] = useState(false);
     const handleOpenContactSellerMsg = () => setShowContactSellerMsg(true);
     const handleCloseContactSellerMsg = () => setShowContactSellerMsg(false);
+    const [seller, setSeller] = useState(null);
+
+    console.log(produce);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/users/${produce.seller}/`, {
+                    method: "GET",
+                    credentials: "include"
+                });
+                const data = await response.json();
+                setSeller(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        fetchData();
+    }, [])
 
     return (
         <Container>
@@ -49,8 +68,8 @@ const Product = ({ produce }) => {
                                 <hr/>
                                 <div>
                                     <h5>Seller Information</h5>
-                                    <p className="m-0 p-0">{produce.seller.first_name} {produce.seller.last_name}</p>
-                                    <p className="m-0 p-0">{produce.city} {produce.province} {produce.country}</p>
+                                    <p className="m-0 p-0">Name: {seller?.first_name} {seller?.last_name}</p>
+                                    <p className="m-0 p-0">Location: {produce.city}</p>
                                 </div>
                                 <hr/>
                                 <div>
