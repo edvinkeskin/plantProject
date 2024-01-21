@@ -8,21 +8,12 @@ import * as React from "react";
 import AddProduce from "../components/AddProduce";
 
 const HomePage = () => {
-    const [produceCollection, setProductCollection] = useState([{ name: "Item 1", price: 10 },
-        { name: "Item 2", price: 15 },
-        { name: "Item 3", price: 20 },
-        { name: "Item 1", price: 10 },
-        { name: "Item 2", price: 15 },
-        { name: "Item 3", price: 20 },
-        { name: "Item 1", price: 10 },
-        { name: "Item 2", price: 15 },
-        { name: "Item 3", price: 20 }]);
+    const [produceCollection, setProductCollection] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
-
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -33,7 +24,19 @@ const HomePage = () => {
         setIsModalOpen(false);
     };
     useEffect(() => {
-
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8000/listings/?filter=expiryDate", {
+                    method: "GET",
+                    credentials: "include"
+                });
+                const data = await response.json();
+                setProductCollection(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        fetchData();
     }, []);
 
     const rows = [];
@@ -41,9 +44,9 @@ const HomePage = () => {
         const rowItems = produceCollection.slice(i, i + 3);
         const row = (
             <Row className="mb-5" key={i}>
-                {rowItems.map((produce, index) => (
+                {rowItems.map((item, index) => (
                     <Col key={index} xs={12} md={4}>
-                        <Produce />
+                        <Produce produce={item}/>
                     </Col>
                 ))}
             </Row>
