@@ -6,6 +6,12 @@ from rest_framework.views import APIView
 
 from ..serializers.user import UserSerializer
 
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+
+
 class RegisterView(APIView): 
     permission_classes = [permissions.AllowAny] 
 
