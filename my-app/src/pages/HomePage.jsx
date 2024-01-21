@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {Button} from "@mui/material";
 import * as React from "react";
 import AddProduce from "../components/AddProduce";
+import Cookies from "js-cookie";
 
 const HomePage = () => {
     const [produceCollection, setProductCollection] = useState([]);
@@ -42,6 +43,9 @@ const HomePage = () => {
             const response = await fetch("http://localhost:8000/listings/", {
                 method: "POST",
                 credentials: "include",
+                headers: {
+                    "X-CSRFToken": Cookies.get("csrftoken")
+                },
                 body: formData,
             });
 
