@@ -78,7 +78,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const PersistentDrawerLeft = ({setUserId}) => {
+const PersistentDrawerLeft = ({userId, setUserId}) => {
   const theme = useTheme();
   const [auth, setAuth] = React.useState(true);
   const [open, setOpen] = React.useState(false);
@@ -120,18 +120,6 @@ const PersistentDrawerLeft = ({setUserId}) => {
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
       <CssBaseline />
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
       <AppBar position="fixed" open={open}>
         <Toolbar>
           {/* <IconButton
@@ -157,7 +145,7 @@ const PersistentDrawerLeft = ({setUserId}) => {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <MenuIcon />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -174,8 +162,14 @@ const PersistentDrawerLeft = ({setUserId}) => {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => window.location.href='http://localhost:3000/'}>My account</MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  {userId ? 
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    :
+                    <>
+                      <MenuItem onClick={() => nav("/register")}>Sign up</MenuItem>
+                      <MenuItem onClick={() => nav("/login")}>Login</MenuItem>
+                    </>
+                  }
                 </Menu>
               </div>
             )}

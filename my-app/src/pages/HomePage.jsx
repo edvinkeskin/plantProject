@@ -92,7 +92,7 @@ const HomePage = ({userId, setUserId}) => {
 
     return (
         <Container>
-            <NewHeader setUserId={setUserId}/>
+            <NewHeader userId={userId} setUserId={setUserId}/>
             <Row className="d-flex flex-row justify-content-between align-items-center">
                 <Col className="mb-3">
                     <h1>Produce</h1>
