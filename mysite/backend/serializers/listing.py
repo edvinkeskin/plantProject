@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from mysite.backend.models.listing import Listing
 
 
@@ -13,7 +14,7 @@ class ListingSerializer(serializers.ModelSerializer):
             "city",
             "province",
             "country",
-            "pricePerLb",
+            "price",
             "expiryDate",
             "status",
             "dateCreated",
