@@ -28,7 +28,7 @@ const HomePage = () => {
         formData.append("name", newListing.name);
         formData.append("description", newListing.description);
         formData.append("city", newListing.city);
-        formData.append("seller", 1);
+        formData.append("seller", 3);
         formData.append("price", newListing.price);
         formData.append("expiryDate", newListing.expiryDate.toISOString().split("T")[0]);
 
@@ -59,6 +59,7 @@ const HomePage = () => {
         }
         setIsModalOpen(false);
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -73,7 +74,7 @@ const HomePage = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [produceCollection]);
 
     const rows = [];
     for (let i = 0; i < produceCollection.length; i += 3) {

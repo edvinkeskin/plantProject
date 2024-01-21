@@ -11,8 +11,6 @@ const Product = ({ produce }) => {
     const handleCloseContactSellerMsg = () => setShowContactSellerMsg(false);
     const [seller, setSeller] = useState(null);
 
-    console.log(produce);
-
     useEffect(() => {
         const fetchData = async () => {
             try {

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Button } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Modal from 'react-modal';
@@ -43,6 +44,9 @@ const AddProduce = ({isOpen, onClose, onSave}) => {
         setListing(initialListingState);
     };
 
+    const upperCaseFirstLetter = (name) => {
+        return name === "expiryDate" ? "Expiry Date" : name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
 
     return (
         <Modal
@@ -61,41 +65,50 @@ const AddProduce = ({isOpen, onClose, onSave}) => {
                 },
             }}
         >
-            <h2>Add Listing</h2>
-            <form>
+            <h2>New Produce</h2>
+            <form className="d-flex flex-column justify-content-center">
                 {Object.entries(listing).map(([key, value]) => (
-                    <div key={key}>
-                        <label htmlFor={key}>{key}:</label>
+                    <div className="mb-2" key={key}>
+                        <label htmlFor={key}>{upperCaseFirstLetter(key)}:</label>
                         {key === 'expiryDate' ? (
-                            <DatePicker
-                                selected={value}
-                                onChange={handleExpiryDateChange}
-                                dateFormat="yyyy-MM-dd"
-                            />
+                            <div>
+                                <DatePicker
+                                    selected={value}
+                                    onChange={handleExpiryDateChange}
+                                    dateFormat="yyyy-MM-dd"
+                                />
+                            </div>
                         ) : key === 'image' ? (
-                            <input
-                                type="file"
-                                id={key}
-                                name={key}
-                                onChange={handleImageChange}
-                            />
+                            <div className="mb-2">
+                                <input
+                                    type="file"
+                                    id={key}
+                                    name={key}
+                                    onChange={handleImageChange}
+                                />
+                            </div>
                         ) : (
-                            <input
-                                type="text"
-                                id={key}
-                                name={key}
-                                value={value}
-                                onChange={handleChange}
-                            />
+                            <div className="mb-2">
+                                <input
+                                    type="text"
+                                    id={key}
+                                    name={key}
+                                    value={value}
+                                    onChange={handleChange}
+                                    style={{ width: '100%' }}
+                                />
+                            </div>
                         )}
                     </div>
                 ))}
-                <button type="button" onClick={handleSave}>
-                    Save
-                </button>
-                <button type="button" onClick={onClose}>
-                    Cancel
-                </button>
+                <div className="mt-4 d-flex flex-column flex-md-row justify-content-md-end">
+                    <Button className="me-2 mb-2 mb-md-0" type="button" onClick={handleSave}>
+                        Add Produce
+                    </Button>
+                    <Button type="button" onClick={onClose}>
+                        Cancel
+                    </Button>
+                </div>
             </form>
         </Modal>
     );
