@@ -7,7 +7,7 @@ import * as React from "react";
 import AddProduce from "../components/AddProduce";
 import Cookies from "js-cookie";
 
-const HomePage = () => {
+const HomePage = ({userId}) => {
     const [produceCollection, setProductCollection] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +28,7 @@ const HomePage = () => {
         formData.append("name", newListing.name);
         formData.append("description", newListing.description);
         formData.append("city", newListing.city);
-        formData.append("seller", 1);
+        formData.append("seller", userId);
         formData.append("price", newListing.price);
         formData.append("expiryDate", newListing.expiryDate.toISOString().split("T")[0]);
 

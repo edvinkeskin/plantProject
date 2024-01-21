@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+const SignIn = ({setUserId}) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,14 +55,14 @@ export default function SignIn() {
             }
         )
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      if (response.ok) {
-        nav('/');
-      }
+
       const data = await response.json();
-      console.log(data);
+      setUserId(data["id"]);
+      nav('/');
     } catch (error) {
       // handle error
     }
@@ -143,3 +143,5 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+export default SignIn;
