@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Paper, Grid, ThemeProvider, createTheme } from '@mui/material';
+import NewHeader from "../components/NewHeader";
 
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 console.log('API key:', apiKey);
@@ -18,7 +19,7 @@ const IngredientProcessor = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer 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`,
+          'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           prompt: `Process the following ingredients: ${inputText}`,
@@ -35,6 +36,7 @@ const IngredientProcessor = () => {
 
   return (
     <ThemeProvider theme={createTheme({/* Your theme customization here */})}>
+        <NewHeader />
       <Grid container justifyContent="center" alignItems="center" height="100vh">
         <Grid item xs={10} sm={8} md={6} lg={4}>
           <Paper elevation={3} style={{ padding: '20px' }}>

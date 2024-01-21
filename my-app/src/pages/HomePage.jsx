@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import * as React from "react";
 import AddProduce from "../components/AddProduce";
 import Cookies from "js-cookie";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import IngredientProcessor from "./OpenAI";
 
 const HomePage = ({userId, setUserId}) => {
     const [produceCollection, setProductCollection] = useState([]);
@@ -91,29 +93,40 @@ const HomePage = ({userId, setUserId}) => {
 
     return (
         <Container>
-            <NewHeader userId={userId} setUserId={setUserId}/>
-            <Row className="mb-3 d-flex flex-row justify-content-between align-items-center">
-                <Col>
-                    <h1 className="m-0 p-0">Produce</h1>
-                </Col>
-                <Col>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {userId && <Button onClick={handleOpenModal}>Add Produce</Button>}
-                    </div>
-                </Col>
-            </Row>
-            <Row>
-                <Col className="p-0">
-                    {rows}
-                </Col>
-            </Row>
-            <AddProduce className="m-0 p-0"
-                isOpen={isModalOpen}
-                onClose={handleCloseModal}
-                onSave={handleSaveListing}
+          <NewHeader userId={userId} setUserId={setUserId} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Row className="mb-3 d-flex flex-row justify-content-between align-items-center">
+                    <Col>
+                      <h1 className="m-0 p-0">Produce</h1>
+                    </Col>
+                    <Col>
+                      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        {userId && (
+                          <Button onClick={handleOpenModal}>Add Produce</Button>
+                        )}
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="p-0">{rows}</Col>
+                  </Row>
+                  <AddProduce
+                    className="m-0 p-0"
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                    onSave={handleSaveListing}
+                  />
+                </>
+              }
             />
+            <Route path="localhost:3000/openai" element={<IngredientProcessor />} />
+          </Routes>
         </Container>
-    )
+      );
 }
 
 export default HomePage;
