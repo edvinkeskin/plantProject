@@ -9,7 +9,7 @@ const Product = ({ produce }) => {
     const imagePath = `${process.env.PUBLIC_URL}/UglyPotato.jpeg`;
 
     return (
-        <Container style={{width: "20rem"}}>
+        <Container>
             <Card onClick={handleOpenModal}>
                 <Card.Img variant="top" src={imagePath} alt="Ugly Potato"/>
                 <Card.Body>
@@ -25,8 +25,8 @@ const Product = ({ produce }) => {
                         <Col md={12} lg={6}>
                             <Image src={imagePath} alt="Ugly Potato" rounded fluid/>
                         </Col>
-                        <Col md={12} lg={6} className="ps-3">
-                            <div className="d-flex flex-column justify-content-center">
+                        <Col md={12} lg={6}>
+                            <div className="my-2 d-flex flex-column justify-content-center">
                                 <div>
                                     <h1>Potato</h1>
                                     <p className="m-0 p-0">Price: $10.00</p>
