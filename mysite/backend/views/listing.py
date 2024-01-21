@@ -3,8 +3,8 @@ from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from mysite.backend.models.listing import Listing
-from mysite.backend.serializers.listing import ListingSerializer
+from backend.models.listing import Listing
+from backend.serializers.listing import ListingSerializer
 
 
 class ListingViewSet(viewsets.ModelViewSet):
