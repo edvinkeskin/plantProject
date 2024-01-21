@@ -79,7 +79,7 @@ const Product = ({ produce }) => {
                 open={showContactSellerMsg}
                 autoHideDuration={3000}
                 onClose={handleCloseContactSellerMsg}
-                message="Seller notified"
+                message="Seller notified. Hang tight!"
             />
         </Container>
     );
