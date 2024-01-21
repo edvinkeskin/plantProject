@@ -9,7 +9,6 @@ from backend.serializers.listing import ListingSerializer
 
 class ListingViewSet(viewsets.ModelViewSet):
     serializer_class = ListingSerializer
-    permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
         list_filter = request.query_params.get("filter")
