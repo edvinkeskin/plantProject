@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { useState, useEffect } from "react";
+import IngredientProcessor from "./pages/OpenAI";
+
 
 function App() {
     const [userId, setUserId] = useState(null);
@@ -18,6 +20,7 @@ function App() {
                 <Route path="/" element={<HomePage userId={userId} setUserId={setUserId} />} />
                 <Route path="/login" element={<LoginPage setUserId={setUserId} />} />
                 <Route path="/register" element={<RegisterPage setUserId={setUserId} />} />
+                <Route path="/openai" element={<IngredientProcessor />} />
             </Routes>
         </Router>
     );

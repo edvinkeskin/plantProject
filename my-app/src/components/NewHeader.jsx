@@ -122,7 +122,7 @@ const PersistentDrawerLeft = ({userId, setUserId}) => {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -130,7 +130,7 @@ const PersistentDrawerLeft = ({userId, setUserId}) => {
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
             <Typography variant="h6" noWrap component="div">
               UGLY PRODUCE
@@ -198,13 +198,17 @@ const PersistentDrawerLeft = ({userId, setUserId}) => {
         <List>
           {['Home', 'Recipies', 'Stories'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => {
+                if (text === 'Recipies') {
+                  window.location.href = 'http://localhost:3000/openai';
+                }
+              }}>
                 <ListItemIcon>
                   {(() => {
                     switch (text) {
                       case 'Home': return <HomeIcon />;
-                      case 'Recipies': return <RestaurantIcon />; // Replace with your actual icon
-                      case 'Stories': return <AutoStoriesIcon />; // Replace with your actual icon
+                      case 'Recipies': return <RestaurantIcon />; 
+                      case 'Stories': return <AutoStoriesIcon />;
                       default: return <MailIcon />;
                     }
                   })()}
