@@ -13,8 +13,6 @@ class Listing(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
     city = models.CharField(max_length=50)
-    province = models.CharField(max_length=2)
-    country = models.CharField(max_length=3)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     expiryDate = models.DateField()
     status = models.CharField(max_length=6, default="open", choices=STATUS_CHOICES)

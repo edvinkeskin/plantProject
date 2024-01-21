@@ -14,8 +14,6 @@ class ListingSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "city",
-            "province",
-            "country",
             "price",
             "expiryDate",
             "status",
