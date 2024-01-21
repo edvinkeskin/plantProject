@@ -196,11 +196,13 @@ const PersistentDrawerLeft = ({userId, setUserId}) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Recipies', 'Stories'].map((text, index) => (
+          {['Home', 'Recipes'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => {
-                if (text === 'Recipies') {
+                if (text === 'Recipes') {
                   window.location.href = 'http://localhost:3000/openai';
+                } else if (text === 'Home') {
+                    window.location.href = 'http://localhost:3000';
                 }
               }}>
                 <ListItemIcon>
