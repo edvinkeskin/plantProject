@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+const SignUp = ({setUserId}) => {
 
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -59,14 +59,15 @@ export default function SignUp() {
             }
         )
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      if (response.ok) {
-        nav('/');
-      }
+
       const data = await response.json();
-      console.log(data);
+      setUserId(data["id"]);
+      localStorage.setItem("userId", data["id"]);
+      nav('/');
     } catch (error) {
       console.log(error);
     }
@@ -172,3 +173,5 @@ export default function SignUp() {
     </ThemeProvider>
   );
 };
+
+export default SignUp;

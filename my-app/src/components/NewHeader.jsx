@@ -29,6 +29,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useNavigate } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -77,11 +78,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
+const PersistentDrawerLeft = ({userId, setUserId}) => {
   const theme = useTheme();
   const [auth, setAuth] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const nav = useNavigate();
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -103,21 +105,21 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const handleLogout = async () => {
+    await fetch('http://localhost:8000/logout', 
+      {
+        method: 'POST',
+      }
+    );
+
+    localStorage.clear();
+    setUserId(null);
+    window.location.href='http://localhost:3000/'
+  }
+
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
       <CssBaseline />
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
       <AppBar position="fixed" open={open}>
         <Toolbar>
           {/* <IconButton
@@ -143,7 +145,7 @@ export default function PersistentDrawerLeft() {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <MenuIcon />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -160,8 +162,14 @@ export default function PersistentDrawerLeft() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => window.location.href='http://localhost:3000/'}>My account</MenuItem>
-                  <MenuItem onClick={() => window.location.href='http://localhost:3000/login'}>Logout</MenuItem>
+                  {userId ? 
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    :
+                    <>
+                      <MenuItem onClick={() => nav("/register")}>Sign up</MenuItem>
+                      <MenuItem onClick={() => nav("/login")}>Login</MenuItem>
+                    </>
+                  }
                 </Menu>
               </div>
             )}
@@ -213,3 +221,5 @@ export default function PersistentDrawerLeft() {
     </Box>
   );
 }
+
+export default PersistentDrawerLeft;

@@ -7,7 +7,7 @@ import * as React from "react";
 import AddProduce from "../components/AddProduce";
 import Cookies from "js-cookie";
 
-const HomePage = () => {
+const HomePage = ({userId, setUserId}) => {
     const [produceCollection, setProductCollection] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +28,7 @@ const HomePage = () => {
         formData.append("name", newListing.name);
         formData.append("description", newListing.description);
         formData.append("city", newListing.city);
-        formData.append("seller", 3);
+        formData.append("seller", userId);
         formData.append("price", newListing.price);
         formData.append("expiryDate", newListing.expiryDate.toISOString().split("T")[0]);
 
@@ -59,7 +59,6 @@ const HomePage = () => {
         }
         setIsModalOpen(false);
     };
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -74,7 +73,7 @@ const HomePage = () => {
             }
         }
         fetchData();
-    }, [produceCollection]);
+    }, []);
 
     const rows = [];
     for (let i = 0; i < produceCollection.length; i += 3) {
@@ -93,7 +92,7 @@ const HomePage = () => {
 
     return (
         <Container>
-            <NewHeader/>
+            <NewHeader userId={userId} setUserId={setUserId}/>
             <Row className="d-flex flex-row justify-content-between align-items-center">
                 <Col className="mb-3">
                     <h1>Produce</h1>
