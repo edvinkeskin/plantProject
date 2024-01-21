@@ -12,7 +12,7 @@ class ListingViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
-        list_filter = request.data.get("filter")
+        list_filter = request.query_params.get("filter")
         listing = Listing.objects.all().order_by(list_filter)
         serializer = ListingSerializer(listing, many=True)
         return Response(serializer.data)

@@ -19,4 +19,4 @@ class Listing(models.Model):
     expiryDate = models.DateField()
     status = models.CharField(max_length=6, default="open", choices=STATUS_CHOICES)
     dateCreated = models.DateField(auto_now_add=True)
-    image = models.TextField()
+    image = models.ImageField(upload_to="listings")
