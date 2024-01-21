@@ -80,9 +80,9 @@ const HomePage = () => {
     for (let i = 0; i < produceCollection.length; i += 3) {
         const rowItems = produceCollection.slice(i, i + 3);
         const row = (
-            <Row className="mb-5" key={i}>
+            <Row key={i}>
                 {rowItems.map((item, index) => (
-                    <Col key={index} xs={12} md={4}>
+                    <Col className="mb-4" key={index} xs={12} md={4}>
                         <Produce produce={item}/>
                     </Col>
                 ))}
@@ -94,15 +94,26 @@ const HomePage = () => {
     return (
         <Container>
             <NewHeader/>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button style={{fontSize: '4vh'}} onClick={handleOpenModal}>Add Produce</Button>
-            </div>
+            <Row className="d-flex flex-row justify-content-between align-items-center">
+                <Col className="mb-3">
+                    <h1>Produces</h1>
+                </Col>
+                <Col>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button onClick={handleOpenModal}>Add Produce</Button>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="p-0">
+                    {rows}
+                </Col>
+            </Row>
             <AddProduce className="m-0 p-0"
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
                 onSave={handleSaveListing}
             />
-            {rows}
         </Container>
     )
 }
