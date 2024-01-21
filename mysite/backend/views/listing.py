@@ -19,14 +19,14 @@ class ListingViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
-        listing = request.data.get("listing")
-        user_id = request.data.get("user_id")
+        seller = request.data.get("seller")
 
-        user = get_object_or_404(User, pk=user_id)
+        get_object_or_404(User, pk=seller)
 
-        Listing.objects.create(
-            seller=user,
-            **{key: listing.get(key) for key in ["name", "description", "city", "province", "country", "price", "expiryDate", "status", "dateCreated", "image"]}
-        )
+        serializer = ListingSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response(status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
