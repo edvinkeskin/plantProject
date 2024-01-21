@@ -1,11 +1,9 @@
 from rest_framework import serializers
 
 from ..models.listing import Listing
-from ..serializers.user import UserSerializer
 
 
 class ListingSerializer(serializers.ModelSerializer):
-    seller = UserSerializer()
     class Meta:
         model = Listing
         fields = [
@@ -14,8 +12,6 @@ class ListingSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "city",
-            "province",
-            "country",
             "price",
             "expiryDate",
             "status",
