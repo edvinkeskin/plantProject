@@ -93,9 +93,9 @@ const HomePage = ({userId, setUserId}) => {
     return (
         <Container>
             <NewHeader userId={userId} setUserId={setUserId}/>
-            <Row className="d-flex flex-row justify-content-between align-items-center">
-                <Col className="mb-3">
-                    <h1>Produce</h1>
+            <Row className="mb-3 d-flex flex-row justify-content-between align-items-center">
+                <Col>
+                    <h1 className="m-0 p-0">Produce</h1>
                 </Col>
                 <Col>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
