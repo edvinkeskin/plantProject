@@ -62,6 +62,7 @@ const SignIn = ({setUserId}) => {
 
       const data = await response.json();
       setUserId(data["id"]);
+      localStorage.setItem("userId", data["id"]);
       nav('/');
     } catch (error) {
       // handle error

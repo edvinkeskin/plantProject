@@ -7,7 +7,7 @@ import * as React from "react";
 import AddProduce from "../components/AddProduce";
 import Cookies from "js-cookie";
 
-const HomePage = ({userId}) => {
+const HomePage = ({userId, setUserId}) => {
     const [produceCollection, setProductCollection] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -92,7 +92,7 @@ const HomePage = ({userId}) => {
 
     return (
         <Container>
-            <NewHeader/>
+            <NewHeader setUserId={setUserId}/>
             <Row className="d-flex flex-row justify-content-between align-items-center">
                 <Col className="mb-3">
                     <h1>Produce</h1>

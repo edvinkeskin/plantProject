@@ -29,6 +29,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useNavigate } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -77,11 +78,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
+const PersistentDrawerLeft = ({setUserId}) => {
   const theme = useTheme();
   const [auth, setAuth] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const nav = useNavigate();
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -102,6 +104,18 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleLogout = async () => {
+    await fetch('http://localhost:8000/logout', 
+      {
+        method: 'POST',
+      }
+    );
+
+    localStorage.clear();
+    setUserId(null);
+    window.location.href='http://localhost:3000/'
+  }
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
@@ -161,7 +175,7 @@ export default function PersistentDrawerLeft() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={() => window.location.href='http://localhost:3000/'}>My account</MenuItem>
-                  <MenuItem onClick={() => window.location.href='http://localhost:3000/login'}>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             )}
@@ -213,3 +227,5 @@ export default function PersistentDrawerLeft() {
     </Box>
   );
 }
+
+export default PersistentDrawerLeft;
