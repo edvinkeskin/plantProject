@@ -1,5 +1,6 @@
-from .models.listing import Listing
 from rest_framework import serializers
+from mysite.backend.models.listing import Listing
+
 
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
