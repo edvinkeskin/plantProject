@@ -1,14 +1,17 @@
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from backend.models.listing import Listing
-from backend.serializers.listing import ListingSerializer
+from ..models.listing import Listing
+from ..serializers.listing import ListingSerializer
 
 
 class ListingViewSet(viewsets.ModelViewSet):
     serializer_class = ListingSerializer
+    permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
         list_filter = request.query_params.get("filter")
@@ -16,19 +19,15 @@ class ListingViewSet(viewsets.ModelViewSet):
         serializer = ListingSerializer(listing, many=True)
         return Response(serializer.data)
 
-    def post(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         listing = request.data.get("listing")
+        user_id = request.data.get("user_id")
+
+        user = get_object_or_404(User, pk=user_id)
+
         Listing.objects.create(
-            seller=self.request.user,
-            name=listing.get("name"),
-            description=listing.get("description"),
-            city=listing.get("city"),
-            province=listing.get("province"),
-            country=listing.get("country"),
-            price=listing.get("price"),
-            expiryDate=listing.get("expiryDate"),
-            status=listing.get("status"),
-            dateCreated=listing.get("dateCreated"),
-            image=listing.get("image")
+            seller=user,
+            **{key: listing.get(key) for key in ["name", "description", "city", "province", "country", "price", "expiryDate", "status", "dateCreated", "image"]}
         )
+
         return Response(status=status.HTTP_201_CREATED)
