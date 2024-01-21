@@ -1,6 +1,5 @@
 import {Col, Container, Row, Button} from "react-bootstrap";
 import Produce from "../components/Produce";
-import Header from "../components/Header";
 import NewHeader from "../components/NewHeader";
 import {useEffect, useState} from "react";
 import * as React from "react";
@@ -99,7 +98,7 @@ const HomePage = ({userId, setUserId}) => {
                 </Col>
                 <Col>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <Button onClick={handleOpenModal}>Add Produce</Button>
+                        {userId && <Button onClick={handleOpenModal}>Add Produce</Button>}
                     </div>
                 </Col>
             </Row>
