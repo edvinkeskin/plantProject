@@ -7,7 +7,6 @@ const HomePage = () => {
     return (
         <Container>
             <NewHeader/>
-            <Header/>
             <p>UglyProduce</p>
             <Produce/>
         </Container>
