@@ -95,7 +95,7 @@ const HomePage = () => {
             <NewHeader/>
             <Row className="d-flex flex-row justify-content-between align-items-center">
                 <Col className="mb-3">
-                    <h1>Produces</h1>
+                    <h1>Listings</h1>
                 </Col>
                 <Col>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
