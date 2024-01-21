@@ -41,28 +41,7 @@ const AddProduce = ({isOpen, onClose, onSave}) => {
     const handleSave = () => {
         onSave(listing);
         setListing(initialListingState);
-        postData()
     };
-
-
-    const postData = async () => {
-        try {
-            let data = {
-                "user_id": 99,
-                "listing": listing
-            }
-            await fetch("http://localhost:8000/listings/", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: data
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
 
     return (

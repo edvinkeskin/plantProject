@@ -18,9 +18,42 @@ const HomePage = () => {
         setIsModalOpen(false);
     };
 
-    const handleSaveListing = (newListing) => {
+    const handleSaveListing = async (newListing) => {
         // Handle saving the listing data
         console.log('Listing saved:', newListing);
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Add each field to the FormData object
+        formData.append("name", newListing.name);
+        formData.append("description", newListing.description);
+        formData.append("city", newListing.city);
+        formData.append("seller", 1);
+        formData.append("price", newListing.price);
+        formData.append("expiryDate", newListing.expiryDate.toISOString().split("T")[0]);
+
+        // Add the image file if it exists
+        if (newListing.image) {
+            formData.append("image", newListing.image);
+        }
+
+        try {
+            // Send the POST request with FormData
+            const response = await fetch("http://localhost:8000/listings/", {
+                method: "POST",
+                credentials: "include",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log("Server response:", responseData);
+        } catch (error) {
+            console.error("Error during POST request:", error);
+        }
         setIsModalOpen(false);
     };
     useEffect(() => {
