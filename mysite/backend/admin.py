@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models.listing import Listing
+
+admin.site.register(Listing)
