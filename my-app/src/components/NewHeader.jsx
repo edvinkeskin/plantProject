@@ -160,8 +160,7 @@ export default function PersistentDrawerLeft() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={() => window.location.href='http://localhost:3000/'}>My account</MenuItem>
                   <MenuItem onClick={() => window.location.href='http://localhost:3000/login'}>Logout</MenuItem>
                 </Menu>
               </div>
