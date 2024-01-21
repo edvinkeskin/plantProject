@@ -40,6 +40,6 @@ const HomePage = () => {
             {rows}
         </Container>
     )
-}git 
+}
 
 export default HomePage;

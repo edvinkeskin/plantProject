@@ -17,10 +17,18 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import FormGroup from '@mui/material/FormGroup';
+import Switch from '@mui/material/Switch';
 import HomeIcon from '@mui/icons-material/Home';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import MailIcon from '@mui/icons-material/Mail';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+
+
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const drawerWidth = 240;
 
@@ -71,19 +79,45 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
+  const [auth, setAuth] = React.useState(true);
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexGrow: 1 }}>
       <CssBaseline />
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={auth}
+              onChange={handleChange}
+              aria-label="login switch"
+            />
+          }
+          label={auth ? 'Logout' : 'Login'}
+        />
+      </FormGroup>
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -98,6 +132,40 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap component="div">
             UGLY PRODUCE
           </Typography>
+            {auth && (
+                <div style={{ display: 'flex', justifyContent: 'flex', width: '1170px' }}>
+                    <div>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleMenu}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                        </Menu>
+                    </div>
+                </div>
+            )}
         </Toolbar>
       </AppBar>
       <Drawer
