@@ -23,7 +23,6 @@ const Header = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        
                         {locations.map((location, index) => (
                             <Dropdown.Item key={index} onClick={() => setSelectedLocation(location)}>Victoria</Dropdown.Item>
                         ))}
