@@ -21,15 +21,15 @@ const HomePage = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [produceCollection]);
 
     const rows = [];
     for (let i = 0; i < produceCollection.length; i += 3) {
         const rowItems = produceCollection.slice(i, i + 3);
         const row = (
-            <Row className="mb-5" key={i}>
+            <Row key={i}>
                 {rowItems.map((item, index) => (
-                    <Col key={index} xs={12} md={4}>
+                    <Col className="mb-4" key={index} xs={12} md={4}>
                         <Produce produce={item}/>
                     </Col>
                 ))}
@@ -41,8 +41,16 @@ const HomePage = () => {
     return (
         <Container>
             <NewHeader/>
-            <h1>Listings</h1>
-            {rows}
+            <Row>
+                <Col className="mb-3">
+                    <h1>Produces</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="p-0">
+                    {rows}
+                </Col>
+            </Row>
         </Container>
     )
 }
