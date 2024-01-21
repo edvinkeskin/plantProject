@@ -41,6 +41,7 @@ const HomePage = () => {
     return (
         <Container>
             <NewHeader/>
+            <h1>Listings</h1>
             {rows}
         </Container>
     )
