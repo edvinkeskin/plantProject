@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.maxImage {
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+}
+
+.react-datepicker-wrapper {
+    width: 100%
+}
+
+.fullImage {
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+}
