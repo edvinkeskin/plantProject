@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from ..models.listing import Listing
@@ -11,7 +10,7 @@ from ..serializers.listing import ListingSerializer
 
 class ListingViewSet(viewsets.ModelViewSet):
     serializer_class = ListingSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [permissions.AllowAny]
 
     def list(self, request, *args, **kwargs):
         list_filter = request.query_params.get("filter")
