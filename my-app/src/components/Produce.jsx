@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {Button, Card, Container, Image, Modal} from "react-bootstrap";
+import {Button, Card, Container, Image, Modal, Row, Col} from "react-bootstrap";
 
-const Product = () => {
+const Product = ({ produce }) => {
     const [showModal, setShowModal] = useState(false);
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -21,35 +21,40 @@ const Product = () => {
             <Modal show={showModal} onHide={handleCloseModal} size="xl" centered>
                 <Modal.Header closeButton/>
                 <Modal.Body>
-                    <div className="d-flex flex-row">
-                        <Image src={imagePath} alt="Ugly Potato" rounded/>
-                        <div className="ps-3 d-flex flex-column justify-content-center">
-                            <div>
-                                <h1>Potato</h1>
-                                <p className="m-0 p-0">Price: $10.00</p>
-                                <p>Expires: 2024-01-01</p>
-                                <p className="m-0 p-0">
-                                    Despite its unconventional appearance, the Ugly Potato boasts a hearty and earthy
-                                    taste that adds depth to a variety of dishes.
-                                </p>
+                    <Row>
+                        <Col md={12} lg={6}>
+                            <Image src={imagePath} alt="Ugly Potato" rounded fluid/>
+                        </Col>
+                        <Col md={12} lg={6} className="ps-3">
+                            <div className="d-flex flex-column justify-content-center">
+                                <div>
+                                    <h1>Potato</h1>
+                                    <p className="m-0 p-0">Price: $10.00</p>
+                                    <p>Expires: 2024-01-01</p>
+                                    <p className="m-0 p-0">
+                                        Despite its unconventional appearance, the Ugly Potato boasts
+                                        a hearty and earthy taste that adds depth to a variety of
+                                        dishes.
+                                    </p>
+                                </div>
+                                <hr/>
+                                <div>
+                                    <h5>Seller Information</h5>
+                                    <p className="m-0 p-0">Richard Lee</p>
+                                    <p className="m-0 p-0">Vancouver, BC Canada</p>
+                                </div>
+                                <hr/>
+                                <div>
+                                    <h5>Contact Seller</h5>
+                                    <Button className="w-100">Send</Button>
+                                </div>
                             </div>
-                            <hr/>
-                            <div>
-                                <h5>Seller Information</h5>
-                                <p className="m-0 p-0">Richard Lee</p>
-                                <p className="m-0 p-0">Vancouver, BC Canada</p>
-                            </div>
-                            <hr/>
-                            <div>
-                                <h5>Contact Seller</h5>
-                                <Button className="w-100">Send</Button>
-                            </div>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </Modal.Body>
             </Modal>
         </Container>
-    )
-}
+    );
+};
 
 export default Product;
