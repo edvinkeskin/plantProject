@@ -1,6 +1,4 @@
-Submission for nwHacks2024 Hackathon at UBC Vancouver. 
-
-# plantProject
+# Ugly Produce
 
 ## Inspiration
 With the increasing food prices across western Canada many people, particularly university students, are unable to afford to their daily groceries. At times they have sort to resorts of dumpster divings where they collect leftovers from groceries stores to feed their empty stomachs. On contrary, approximately 30 percent of produce in Canada is rejected by distributors for being too ugly which leads to waste of food and resources. Our idea utilized to utilize this waste food into an opportunity to connect both communities thus creating a sustainable environment. Through our application "ugly produces" are met with hungry stomachs and happy families.
@@ -28,6 +26,7 @@ Ugliest produce of the week contest.
 Better infrastructure for handling larger produce information loads.
 Communication between producers and customers.
 
+Submission for nwHacks2024 Hackathon at UBC Vancouver. 
 ## Demo 
 <img width="1440" alt="Screenshot 2024-01-21 at 12 02 56 PM" src="https://github.com/edvinkeskin/plantProject/assets/77553524/66978199-099c-451e-9a2f-43c02146ab7f">
 <img width="1440" alt="Screenshot 2024-01-21 at 12 03 08 PM" src="https://github.com/edvinkeskin/plantProject/assets/77553524/d8cb5471-45d3-410c-b64b-f86e8bf80310">
