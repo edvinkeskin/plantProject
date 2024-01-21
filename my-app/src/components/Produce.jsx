@@ -1,10 +1,14 @@
 import {useState} from "react";
 import {Button, Card, Container, Image, Modal, Row, Col} from "react-bootstrap";
+import {Snackbar} from "@mui/material";
 
 const Product = ({ produce }) => {
     const [showModal, setShowModal] = useState(false);
     const handleOpenModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
+    const [showContactSellerMsg, setShowContactSellerMsg] = useState(false);
+    const handleOpenContactSellerMsg = () => setShowContactSellerMsg(true);
+    const handleCloseContactSellerMsg = () => setShowContactSellerMsg(false);
 
     const imagePath = `${process.env.PUBLIC_URL}/UglyPotato.jpeg`;
 
@@ -46,13 +50,24 @@ const Product = ({ produce }) => {
                                 <hr/>
                                 <div>
                                     <h5>Contact Seller</h5>
-                                    <Button className="w-100">Send</Button>
+                                    <Button 
+                                        className="w-100"
+                                        onClick={handleOpenContactSellerMsg}
+                                    >
+                                        Send
+                                    </Button>
                                 </div>
                             </div>
                         </Col>
                     </Row>
                 </Modal.Body>
             </Modal>
+            <Snackbar 
+                open={showContactSellerMsg}
+                autoHideDuration={3000}
+                onClose={handleCloseContactSellerMsg}
+                message="Seller notified"
+            />
         </Container>
     );
 };
